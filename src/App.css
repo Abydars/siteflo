@@ -1,38 +1,88 @@
-.App {
-  text-align: center;
+.app{
+    font-family: 'stoke';
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.nav-link{
+    color: #FFFFFF;
+    font-family: 'stoke';
+    font-size: 25px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1{
+    font-family: 'stoke';
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.color-nav{
+    background: #000000;
 }
-
-.App-link {
-  color: #61dafb;
+.App-header{
+    margin-bottom: 100px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-input{
+    border: none;
+    border-bottom: black 2px solid;
+    padding: 0;
+}
+.form-label{
+    font-weight: bold;
+}
+.form-row{
+    margin-top: 30px;
+}
+.form-group{
+    margin-bottom: 20px;
+}
+.submit-button{
+    width: 150px;
+    background: #000000;
+    border: black 1px solid;
+    margin-top: 10px;
+    font-family: 'stoke';
+    font-size: 11px;
+    font-weight: 100;
+    height: 37px;
+}
+.submit-button:hover{
+    background: white;
+    color:#000;
+    border-color: black;
+}
+.forget-text{
+    text-align: right;
+    color: #7C7C7C;
+    padding-top: 17px;
+}
+.websiteButton{
+    color:#000000;
+    font-family: 'stoke';
+    background: transparent;
+    border: black 2px solid;
+    text-align: left;
+}
+.websiteButton:hover{
+    background: black;
+    color:#fff;
+    border-color: black;
+}
+.website-text{
+    text-align: left;
+}
+.submit-button-website{
+    width: 150px;
+    background: #000000;
+    border: black 1px solid;
+    font-family: 'stoke';
+    font-size: 11px;
+    font-weight: 100;
+    margin: 20px auto;
+    height: 37px;
+    display: block;
+}
+.submit-button-website:hover{
+    background: white;
+    color:#000;
+    border-color: black;
+}
+.icon-text{
+    float: right;
+    /* line-height: 18px; */
+    top: 6px;
+    position: relative;
 }
