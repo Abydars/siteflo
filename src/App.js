@@ -11,7 +11,7 @@ import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
 import Signup from "./components/signup.component";
 import Website from "./components/website.component";
-import StudentList from "./components/student-list.component";
+import websiteDetails from "./components/websiteDetails.component";
 import WebFont from 'webfontloader';
 
 WebFont.load({
@@ -44,7 +44,7 @@ function App() {
                     <Route exact path='/' component={Signup}/>
                     <Route path="/signup" component={Signup}/>
                     <Route path="/website" component={Website}/>
-                    <Route path="/student-list" component={StudentList}/>
+                    <Route path="/websiteDetails" component={websiteDetails}/>
                 </Switch>
             </div>
         </div>

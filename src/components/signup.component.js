@@ -1,10 +1,12 @@
 import React, {Component} from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
-import {Jumbotron, Container, Row, Col} from 'react-bootstrap';
+import {Jumbotron, Container, Row, Col,Alert} from 'react-bootstrap';
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
 import welcome from './../assets/Welcome.png';
+import store from "../store/store";
+import {reactLocalStorage} from 'reactjs-localstorage';
 
 export default class Signup extends Component {
 
@@ -14,11 +16,21 @@ export default class Signup extends Component {
         // Setting up functions
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
         // Setting up state
         this.state = {
             username: '',
             password: '',
+            error: false,
+            errMessage: '',
+        }
+    }
+
+    componentDidMount() {
+        if(reactLocalStorage.get('id',false,true))
+        {
+            this.props.history.push('/website');
         }
     }
 
@@ -32,16 +44,30 @@ export default class Signup extends Component {
 
     onSubmit(e) {
         e.preventDefault()
-        return <Redirect to={'/website'} />
-        // const studentObject = {
-        //     name: this.state.name,
-        //     email: this.state.email,
-        //     rollno: this.state.rollno
-        // };
-        // axios.post('http://localhost:4000/students/create-student', studentObject)
-        //     .then(res => console.log(res.data));
-        //
-        // this.setState({username: '', password: ''})
+        const studentObject = {
+            username: this.state.username,
+            password: this.state.password,
+        };
+        axios.post('http://localhost:4000/users/authenticate', studentObject)
+            .then(response => {
+                // console.log(response.data._id)
+                reactLocalStorage.set('id', <response className="data _id"></response>);
+                this.setState({
+                    username: '',
+                    password:''
+                })
+                this.props.history.push('/website');
+            })
+            .catch(error => {
+                this.setState({
+                    error:true,
+                    username:'',
+                    password: '',
+                    errMessage:error.response.data.message
+                })
+            });
+
+
     }
 
     render() {
@@ -56,6 +82,11 @@ export default class Signup extends Component {
                     <Row className={'form-row'}>
                         <Col md={{span: 6, offset: 3}}>
                             <div className="form-wrapper">
+                                {this.state.error &&
+                                <Alert variant={'danger'}>
+                                    {this.state.errMessage}
+                                </Alert>
+                                }
                                 <Form onSubmit={this.onSubmit}>
                                     <Form.Group controlId="Name">
                                         <Form.Label className={'form-label'}>Username</Form.Label>
@@ -65,7 +96,7 @@ export default class Signup extends Component {
                                     </Form.Group>
                                     <Form.Group controlId="Name">
                                         <Form.Label className={'form-label'}>Password</Form.Label>
-                                        <Form.Control type="password" value={this.state.name}
+                                        <Form.Control type="password" value={this.state.password}
                                                       placeholder={'Type Your Password'}
                                                       onChange={this.onChangePassword} className={'form-input'}/>
                                     </Form.Group>

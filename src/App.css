@@ -86,3 +86,104 @@ h1{
     top: 6px;
     position: relative;
 }
+.addnew{
+    margin-top: 10px;
+    border: #000 2px solid;
+    padding: 7px;
+}
+.addnew-input{
+    border: none;
+    border-bottom: #000 2px solid;
+    margin-right: 36px;
+    width: 80%;
+}
+.addnew-input:focus{
+    border-bottom: #000 2px solid;
+}
+.addnew-button{
+    background: #000000;
+    border: black 1px solid;
+    font-family: 'stoke';
+    font-size: 11px;
+    font-weight: 100;
+}
+.addnew-button:hover{
+    background: white;
+    color:#000;
+    border-color: black;
+}
+.addnew-input.validate{
+    border: #fc0000 1px solid;
+}
+.backButton{
+    display: inline;
+    width: 200px;
+    background: transparent;
+    color: #000;
+    border: none;
+}.back-icon{
+     float: left;
+
+     /* line-height: 18px; */
+     top: 4px;
+     position: relative;
+ }
+.backButton:hover,.backButton:active,.backButton:focus{
+    border: none !important;
+    background: transparent !important;
+    color:#000 !important;
+    box-shadow: none !important;
+
+}
+.weboption{
+    display: inline-block;
+    float: right;
+}
+.weboption .delete{
+    top: 4px;
+    position: relative;
+    font-size: 18px;
+}
+.weboption .link{
+    font-size: 18px;
+    margin-left: 12px;
+    top: 4px;
+    position: relative;
+}
+.nestable-item-name{
+    border: #000 2px solid;
+    height: 35px;
+    border-radius: 5px;
+}
+.nestable-item-name .bar-div{
+    display: inline;
+    border-right: #000 2px solid;
+    padding: 7px 9px 11px 15px;
+}
+.nestable-item-name .bar-icon{
+    font-size: 16px;
+    position: relative;
+    bottom: 0px;
+}
+.nestable-item-name .nestable-text{
+    display: inline;
+    font-size: 16px;
+    font-family: 'stroke';
+    padding-left: 10px;
+}
+.nestable-item-name .nestable-text p{
+    display: inline-block;
+    position: relative;
+    top: 3px;
+}
+.nestable-item-name .down-div{
+    display: inline;
+    padding: 5px 9px 11px 15px;
+    float: right;
+}
+.nestable-item-name .down-icon{
+    font-size: 16px;
+    position: relative;
+    bottom: 0px;
+
+}

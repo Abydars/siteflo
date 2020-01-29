@@ -1,46 +1,26 @@
-let express = require('express');
-let mongoose = require('mongoose');
-let cors = require('cors');
-let bodyParser = require('body-parser');
-let dbConfig = require('./database/db');
-
-// Express Route
-const studentRoute = require('../backend/routes/student.route')
-
-// Connecting mongoDB Database
-mongoose.Promise = global.Promise;
-mongoose.connect(dbConfig.db, {
-    useNewUrlParser: true
-}).then(() => {
-        console.log('Database sucessfully connected!')
-    },
-    error => {
-        console.log('Could not connect to database : ' + error)
-    }
-)
-
+﻿require('rootpath')();
+const express = require('express');
 const app = express();
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const errorHandler = require('_helpers/error-handler');
+
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
 app.use(cors());
-app.use('/students', studentRoute)
 
+// use JWT auth to secure the api
+// app.use(jwt());
 
-// PORT
-const port = process.env.PORT || 4000;
-const server = app.listen(port, () => {
-    console.log('Connected to port ' + port)
-})
+// api routes
+app.use('/users', require('./users/users.controller'));
+app.use('/websites', require('./websites/websites.controller'));
 
-// 404 Error
-app.use((req, res, next) => {
-    next(createError(404));
-});
+// global error handler
+app.use(errorHandler);
 
-app.use(function (err, req, res, next) {
-    console.error(err.message);
-    if (!err.statusCode) err.statusCode = 500;
-    res.status(err.statusCode).send(err.message);
+// start server
+const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
+const server = app.listen(port, function () {
+    console.log('Server listening on port ' + port);
 });
